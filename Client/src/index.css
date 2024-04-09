@@ -1,0 +1,29 @@
+@font-face {
+  font-family: "Bebas";
+  src: url("./Fonts/JTUSjIg69CK48gW7PXoo9Wlhyw.ttf");
+}
+
+@font-face {
+  font-family: "Para";
+  src: url("./Fonts/Jqz55SSPQuCQF3t8uOwiUL-taUTtap9Gayo.ttf");
+}
+@font-face {
+  font-family: "rage";
+  src: url("./Fonts/RAGE_1.TTF");
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.text-stroke {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: white;
+  color: transparent;
+}
