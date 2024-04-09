@@ -14,18 +14,20 @@ const bookingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  // numberOfPeople: {
-  //   type: Number,
-  //   required: true,
-  // },
-  // bookingDateTime: {
-  //   type: Date,
-  //   required: true,
-  // },
-  // createdAt: {
-  //   type: Date,
-  //   default: Date.now,
-  // },
+  numberOfPeople: {
+    type: Number,
+    required: true,
+  },
+  bookingDate: {
+    type: Date,
+    required: true,
+  },
+  
+  bookingTime: {
+    type: String,
+    required: true,
+  },
+  
 });
 
 // Create a model using the schema

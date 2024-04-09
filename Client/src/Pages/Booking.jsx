@@ -9,8 +9,9 @@ function Booking() {
         name: "",
         email: "",
         phone: "",
-        date: "",
-        time: ""
+        bookingDate: "",
+        time: "",
+        numberOfPeople: " "
     })
 
     const handleChange = (e) => {
@@ -29,7 +30,7 @@ function Booking() {
             });
     };
 
-    
+
     return (
         <>
             <Navbar color={'text-[#383632]'} />
@@ -69,7 +70,7 @@ function Booking() {
                                         <label for="date" className="mb-3 block text-base font-medium text-[#07074D]">
                                             Date
                                         </label>
-                                        <input type="date" name="date" id="date" onChange={handleChange}
+                                        <input type="date" name="bookingDate" id="date" onChange={handleChange}
                                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#000000] focus:shadow-md" />
                                     </div>
                                 </div>
@@ -78,44 +79,18 @@ function Booking() {
                                         <label for="time" className="mb-3 block text-base font-medium text-[#07074D]">
                                             Time
                                         </label>
-                                        <input type="time" name="time" id="time" onChange={handleChange}
+                                        <input type="time" name="bookingTime" id="time" onChange={handleChange}
                                             className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#000000] focus:shadow-md" />
                                     </div>
                                 </div>
                             </div>
-
-                            {/* <div className="mb-5 pt-3">
-                              <label className="mb-5 block text-base font-semibold text-[#07074D] sm:text-xl">
-                                  Address Details
-                              </label>
-                              <div className="-mx-3 flex flex-wrap">
-                                  <div className="w-full px-3 sm:w-1/2">
-                                      <div className="mb-5">
-                                          <input type="text" name="area" id="area" placeholder="Enter area"
-                                              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#000000] focus:shadow-md" />
-                                      </div>
-                                  </div>
-                                  <div className="w-full px-3 sm:w-1/2">
-                                      <div className="mb-5">
-                                          <input type="text" name="city" id="city" placeholder="Enter city"
-                                              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#000000] focus:shadow-md" />
-                                      </div>
-                                  </div>
-                                  <div className="w-full px-3 sm:w-1/2">
-                                      <div className="mb-5">
-                                          <input type="text" name="state" id="state" placeholder="Enter state"
-                                              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#000000] focus:shadow-md" />
-                                      </div>
-                                  </div>
-                                  <div className="w-full px-3 sm:w-1/2">
-                                      <div className="mb-5">
-                                          <input type="text" name="post-code" id="post-code" placeholder="Post Code"
-                                              className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#000000] focus:shadow-md" />
-                                      </div>
-                                  </div>
-                              </div>
-                          </div> */}
-
+                            <div className="mb-5">
+                                <label for="no_of_person" className="mb-3 block text-base font-medium text-[#07074D]">
+                                    Number of Persons
+                                </label>
+                                <input type="number" name="numberOfPeople" id="no_of_person" placeholder="Number of Persons" onChange={handleChange}
+                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#000000] focus:shadow-md" />
+                            </div>
                             <div>
                                 <button
                                     className="hover:shadow-form w-full rounded-md bg-[#383632] py-3 px-8 text-center text-base font-semibold text-white outline-none">
