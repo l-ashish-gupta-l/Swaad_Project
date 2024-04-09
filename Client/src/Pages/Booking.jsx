@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import MenuPAGEBg from '../assets/MenuPAGEBg.jpg'
+import axios from 'axios';
 function Booking() {
 
     const [Details, setDetails] = useState({
@@ -19,7 +20,16 @@ function Booking() {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(Details);
-    }
+        axios.post('http://localhost:3000/create', Details)
+            .then(response => {
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+    };
+
+    
     return (
         <>
             <Navbar color={'text-[#383632]'} />
