@@ -1,0 +1,13 @@
+{
+  "name": "swaad-restaurant",
+  "version": "1.0.0",
+  "description": "\"SWAAD\"",
+  "main": ".",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "git": "git add . && git commit -m",
+    "postgit": "git push --all"
+  },
+  "author": "",
+  "license": "ISC"
+}
