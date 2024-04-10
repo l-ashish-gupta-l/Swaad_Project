@@ -6,6 +6,7 @@ import Contact from './Pages/Contact';
 import Gallery from './Pages/Gallery';
 import Blog from './Pages/BlogPage';
 import Booking from './Pages/Booking';
+import AdminPanel from './Pages/AdminPanel';
 function App() {
   return (
     <Router>
@@ -17,6 +18,7 @@ function App() {
         <Route path='/gallery' Component={Gallery} />
         <Route path='/contact' Component={Contact} />
         <Route path='/booking' Component={Booking} />
+        <Route path='/adminpanel' Component={AdminPanel} />
       </Routes>
     </Router>
   )
