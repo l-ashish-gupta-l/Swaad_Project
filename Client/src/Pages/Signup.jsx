@@ -3,11 +3,25 @@ import Navbar from '../Components/Navbar'
 import MenuPAGEBg from '../assets/MenuPAGEBg.jpg'
 import Footer from '../Components/Footer'
 import { useForm } from 'react-hook-form'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 function Signup() {
+    const navigate = useNavigate();
     const form = useForm();
     const { register, handleSubmit, formState } = form;
     const { errors } = formState;
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = (Userdata) => {
+        // console.log(Userdata);
+        axios.post('http://localhost:3000/createUser', Userdata)
+            .then(response => {
+                console.log(response.data);
+                navigate("/home")
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+
+    }
     return (
         <>
             <Navbar color={'text-[#383632]'} />
@@ -63,7 +77,7 @@ function Signup() {
                                     Create Password
                                 </label>
                                 <input type="password" {...register("password", {
-                                    required : "Create Password"
+                                    required: "Create Password"
                                 })} id="password" placeholder="Create password"
                                     className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#000000] focus:shadow-md" />
                                 <p className='text-red-600 font-semibold'>{errors.password?.message}</p>

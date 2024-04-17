@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Define the schema for the booking
+
 const bookingSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -22,12 +22,11 @@ const bookingSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  
+
   bookingTime: {
     type: String,
     required: true,
   },
-  
 });
 
 // Create a model using the schema
