@@ -9,8 +9,5 @@
     "postgit": "git push --all"
   },
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "react-hook-form": "^7.51.3"
-  }
+  "license": "ISC"
 }

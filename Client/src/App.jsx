@@ -7,6 +7,8 @@ import Gallery from './Pages/Gallery';
 import Blog from './Pages/BlogPage';
 import Booking from './Pages/Booking';
 import AdminPanel from './Pages/AdminPanel';
+import LoginPage from './Pages/LoginPage';
+import Signup from './Pages/Signup';
 function App() {
   return (
     <Router>
@@ -19,6 +21,8 @@ function App() {
         <Route path='/contact' Component={Contact} />
         <Route path='/booking' Component={Booking} />
         <Route path='/adminpanel' Component={AdminPanel} />
+        <Route path='/login' Component={LoginPage} />
+        <Route path='/signup' Component={Signup} />
       </Routes>
     </Router>
   )
