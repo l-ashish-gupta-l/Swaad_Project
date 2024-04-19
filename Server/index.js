@@ -14,10 +14,15 @@ const Usermodel = require("./Model/UserModel");
 const cookieparser = require("cookie-parser");
 
 // Middlewares
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cookieparser())
+app.use(cookieparser());
 
 //Routes
 app.get("/", (req, res) => {

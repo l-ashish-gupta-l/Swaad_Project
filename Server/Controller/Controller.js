@@ -24,12 +24,11 @@ const UserCreate = async (req, res) => {
         ...req.body,
         password: hashed_password,
       });
-      const token = await jwt.sign({ id: user._id }, process.env.SECRET);
+      const token = jwt.sign({ id: user._id }, process.env.SECRET);
       const cookie = res.cookie("User", token, {
-        maxAge: 900000,
         httpOnly: true,
       });
-      console.log(cookie);
+      // console.log(cookie);
       res.status(200).send("User created succesfully");
     }
   } catch (err) {
@@ -49,6 +48,8 @@ const UserLogin = async (req, res) => {
         req.body.password,
         user.password
       );
+      const token =  jwt.sign({ id: user.id }, process.env.SECRET);
+      res.cookie("User", token, { httpOnly: true });
       if (passwordIsValid) {
         res.status(200).send(user);
       } else {
@@ -60,4 +61,7 @@ const UserLogin = async (req, res) => {
   }
 };
 
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
+//   .eyJpZCI6IjY2MjIxYTdiZDQxMDI2ZTA3YTYzMzdhNyIsImlhdCI6MTcxMzUxMTMzNn0
+//   .dSCuf6sNIx_GdnlI853CseBcU_6Jj5YHDNyPh8WYthw;
 module.exports = { BookingController, UserCreate, UserLogin };

@@ -11,9 +11,11 @@ function Signin() {
     const { register, handleSubmit, formState } = form;
     const { errors } = formState;
     const onSubmit = async (data) => {
-        try{
-        const response = await axios.post("http://localhost:3000/loginUser", data)
-            if (response.status === 200) { 
+        try {
+            const response = await axios.post("http://localhost:3000/loginUser", data, {
+                withCredentials: true,
+            })
+            if (response.status === 200) {
                 navigate('/home')
             }
         } catch (err) {
