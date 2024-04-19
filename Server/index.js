@@ -11,11 +11,13 @@ const {
 } = require("./Controller/Controller");
 const cors = require("cors");
 const Usermodel = require("./Model/UserModel");
+const cookieparser = require("cookie-parser");
 
 // Middlewares
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
 app.use(bodyParser.json());
+app.use(cookieparser())
 
 //Routes
 app.get("/", (req, res) => {
@@ -24,7 +26,6 @@ app.get("/", (req, res) => {
 
 app.post("/createUser", UserCreate);
 app.post("/loginUser", UserLogin);
-
 app.post("/create", BookingController);
 
 //Port Listening
