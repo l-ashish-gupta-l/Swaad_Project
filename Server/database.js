@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const uri = "mongodb://localhost:27017/Swaad";
+const uri = process.env.MONGODB_URI;
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 mongoose.connection.on('connected', () => {

@@ -7,7 +7,7 @@ import Gallery from './Pages/Gallery';
 import Blog from './Pages/BlogPage';
 import Booking from './Pages/Booking';
 import AdminPanel from './Pages/AdminPanel';
-import LoginPage from './Pages/LoginPage';
+import Signin from './Pages/Signin.jsx';
 import Signup from './Pages/Signup';
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
         <Route path='/contact' Component={Contact} />
         <Route path='/booking' Component={Booking} />
         <Route path='/adminpanel' Component={AdminPanel} />
-        <Route path='/login' Component={LoginPage} />
+        <Route path='/signin' Component={Signin} />
         <Route path='/signup' Component={Signup} />
       </Routes>
     </Router>

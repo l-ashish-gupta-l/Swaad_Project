@@ -3,11 +3,23 @@ import Navbar from '../Components/Navbar'
 import MenuPAGEBg from '../assets/MenuPAGEBg.jpg'
 import Footer from '../Components/Footer'
 import { useForm } from 'react-hook-form'
-function LoginPage() {
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+function Signin() {
+    const navigate = useNavigate();
     const form = useForm();
     const { register, handleSubmit, formState } = form;
     const { errors } = formState;
-    const onSubmit = (data) => console.log(data);
+    const onSubmit = async (data) => {
+        try{
+        const response = await axios.post("http://localhost:3000/loginUser", data)
+            if (response.status === 200) { 
+                navigate('/home')
+            }
+        } catch (err) {
+            console.log(err.response.data)
+        }
+    }
     return (<>
         <Navbar color={'text-[#383632]'} />
         <div className="flex justify-center items-center relative flex-col py-20 ">
@@ -58,4 +70,4 @@ function LoginPage() {
     )
 }
 
-export default LoginPage
+export default Signin

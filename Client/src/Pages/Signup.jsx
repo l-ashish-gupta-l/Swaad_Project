@@ -10,16 +10,16 @@ function Signup() {
     const form = useForm();
     const { register, handleSubmit, formState } = form;
     const { errors } = formState;
-    const onSubmit = (Userdata) => {
-        // console.log(Userdata);
-        axios.post('http://localhost:3000/createUser', Userdata)
-            .then(response => {
-                console.log(response.data);
+    const onSubmit = async (Userdata) => {
+        try{
+            const response = await axios.post('http://localhost:3000/createUser', Userdata)
+            if (response)
+            {
                 navigate("/home")
-            })
-            .catch(error => {
-                console.error('There was an error!', error);
-            });
+             }
+        } catch (err) {
+            console.log(err.response.data)
+        }
 
     }
     return (

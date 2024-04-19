@@ -4,20 +4,20 @@ import Footer from '../Components/Footer'
 import MenuPAGEBg from '../assets/MenuPAGEBg.jpg'
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom'
 function Booking() {
     const form = useForm()
     const { register, handleSubmit, formState } = form
     const { errors } = formState
+    let navigate = useNavigate();
 
     const onSubmit = (data) => {
-        console.log(data);
-        axios.post('http://localhost:3000/create', data)
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(error => {
+        try{
+            axios.post('http://localhost:3000/create', data)
+            navigate('/home');
+        } catch(error) {
                 console.error('There was an error!', error);
-            });
+            }
     }
 
     return (
