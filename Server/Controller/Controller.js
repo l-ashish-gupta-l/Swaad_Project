@@ -2,11 +2,31 @@ const Booking = require("../Model/TableModel");
 const Usermodel = require("../Model/UserModel.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
+const isAuthenticated = async (req, res, next) => {
+  const jwtoken = req.cookies.User;
+  // console.log(req.cookies.User);
+  if (!jwtoken) {
+    res.status(400).send("Cookie  not set! SIGNIN or LOGIN");
+  } else {
+    const user_detail = await Usermodel.findOne({
+      token: jwtoken,
+    });
+    req.user_detail = user_detail;
+    next();
+  }
+};
+
+const getuserdata = async(req,res) => {
+  res.status(200).send(req.user_detail);
+}
+
 const BookingController = async (req, res) => {
   try {
     // console.log(req.body);
     const booking = await Booking.create(req.body);
-    res.send("Data created successfully!");
+    console.log(req.user_detail);
+    res.status(200).send("Data created successfully!");
   } catch (error) {
     console.error(error);
   }
@@ -25,10 +45,11 @@ const UserCreate = async (req, res) => {
         password: hashed_password,
       });
       const token = jwt.sign({ id: user._id }, process.env.SECRET);
+      user.token = token;
+      await user.save();
       const cookie = res.cookie("User", token, {
         httpOnly: true,
       });
-      // console.log(cookie);
       res.status(200).send("User created succesfully");
     }
   } catch (err) {
@@ -48,9 +69,9 @@ const UserLogin = async (req, res) => {
         req.body.password,
         user.password
       );
-      const token =  jwt.sign({ id: user.id }, process.env.SECRET);
-      res.cookie("User", token, { httpOnly: true });
+
       if (passwordIsValid) {
+        res.cookie("User", user.token, { httpOnly: true });
         res.status(200).send(user);
       } else {
         res.status(401).json("Password Incorrect");
@@ -61,7 +82,10 @@ const UserLogin = async (req, res) => {
   }
 };
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9
-//   .eyJpZCI6IjY2MjIxYTdiZDQxMDI2ZTA3YTYzMzdhNyIsImlhdCI6MTcxMzUxMTMzNn0
-//   .dSCuf6sNIx_GdnlI853CseBcU_6Jj5YHDNyPh8WYthw;
-module.exports = { BookingController, UserCreate, UserLogin };
+module.exports = {
+  BookingController,
+  UserCreate,
+  UserLogin,
+  isAuthenticated,
+  getuserdata,
+};
