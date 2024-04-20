@@ -14,7 +14,7 @@ function Menu() {
           <div className='Headings flex justify-between items-center mt-5 '>
             {["StarTers", "Nonveg", "vegeterian", "Dessert", "Drinks"].map((item, index) => {
               return(
-                <button className='font-["Para"] text-[#8D8987]'>{item}</button>
+                <button key={index} className='font-["Para"] text-[#8D8987]'>{item}</button>
               ) })}
           </div>
 

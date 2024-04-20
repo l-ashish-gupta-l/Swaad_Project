@@ -12,12 +12,17 @@ function Booking() {
     let navigate = useNavigate();
 
     const onSubmit = (data) => {
-        try{
-            axios.post('http://localhost:3000/create', data)
-            navigate('/home');
-        } catch(error) {
-                console.error('There was an error!', error);
+        try {
+            const response = axios.post('http://localhost:3000/create', data, {
+                withCredentials: true,
+            })
+            if (response) {
+                navigate('/home');
             }
+
+        } catch (error) {
+            console.error('There was an error!', err);
+        }
     }
 
     return (
