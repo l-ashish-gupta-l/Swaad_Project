@@ -19,7 +19,7 @@ function Navbar(props) {
     }, []);
 
     const User_data = useSelector(state => state.User)
-    console.log(User_data.Username)
+    // console.log(User_data.Username)
    
 
     return (
@@ -41,7 +41,7 @@ function Navbar(props) {
                 })}
             </div>
             <div className='Bookbtn flex justify-center gap-5 items-center ' >
-                {User_data ? (<Link className={`text-xl ${props.color}`}>Hello, <span className='text-[#E49E27]'>{User_data.Username}</span> </Link>) : (
+                {User_data.Username ? (<Link className={`text-xl ${props.color}`}>Hello, <span className='text-[#E49E27]'>{User_data.Username}</span> </Link>) : (
                     <>
                         <Link to={"/booking"} className={`px-5 py-2 border tracking-widest font-[200] text-sm rounded-full ${props.color}`}>BOOK A TABLE </Link>
                         <Link to={'/signin'} className={`${props.color}`}>

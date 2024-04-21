@@ -17,9 +17,9 @@ const isAuthenticated = async (req, res, next) => {
   }
 };
 
-const getuserdata = async(req,res) => {
+const getuserdata = async (req, res) => {
   res.status(200).send(req.user_detail);
-}
+};
 
 const BookingController = async (req, res) => {
   try {
@@ -49,6 +49,7 @@ const UserCreate = async (req, res) => {
       await user.save();
       const cookie = res.cookie("User", token, {
         httpOnly: true,
+        maxAge: 10 * 24 * 60 * 60 * 1000,
       });
       res.status(200).send("User created succesfully");
     }
@@ -71,7 +72,10 @@ const UserLogin = async (req, res) => {
       );
 
       if (passwordIsValid) {
-        res.cookie("User", user.token, { httpOnly: true });
+        res.cookie("User", user.token, {
+          httpOnly: true,
+          maxAge: 10 * 24 * 60 * 60 * 1000,
+        });
         res.status(200).send(user);
       } else {
         res.status(401).json("Password Incorrect");
