@@ -4,11 +4,16 @@ import Menudata from '../Menu/MenuData';
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../REDUX/CartSlice';
+import { Link } from 'react-router-dom';
+import { TbShoppingBag } from "react-icons/tb";
 
-const DishesCard = (item) => {
+// console.log(Menudata.Drinks[1])
+
+const DishesCard = ({ dish }) => {
   const dispatch = useDispatch();
-  const ADDTOCART_FUCN = (item) => {
-    dispatch(addToCart(item))
+  const ADDTOCART_FUCN = (dish) => {
+    console,log(dish)
+    dispatch(addToCart(dish))
   }
 
   const data = useSelector(state => state.Cart);
@@ -17,18 +22,18 @@ const DishesCard = (item) => {
   return (
     <div className='w-full h-[25vh] pl-2 flex items-center relative'>
       <div className='img w-20 h-20 rounded-full border-black overflow-hidden'>
-        <img src={item.img} alt={item.Name} className='w-full h-full object-cover' />
+        <img src={dish.img} alt={dish.name} className='w-full h-full object-cover' />
       </div>
       <div className='ml-5   w-1/2 flex justify-center flex-col '>
-        <h1 className='font-["para"] font-bold text-md text-[#383632]'>{item.Name}</h1>
+        <h1 className='font-["para"] font-bold text-md text-[#383632]'>{dish.name}</h1>
 
-        <p className='font-["para"] font-normal text-sm text-zinc-600 w-3/4'>{item.ingredients.join(', ')}</p>
+        <p className='font-["para"] font-normal text-sm text-zinc-600 w-3/4'>{dish.ingredients.join(', ')}</p>
       </div>
       <div className='ml-14 flex justify-center flex-col '>
-        <h1 className='font-["para"] font-bold text-lg text-[#383632]'>${item.price.toFixed(2)}</h1>
+        <h1 className='font-["para"] font-bold text-lg text-[#383632]'>${dish.price.toFixed(2)}</h1>
         <p className='font-["para] font-normal text-zinc-600'>Price</p>
       </div>
-      <button onClick={() => ADDTOCART_FUCN(item)} className='absolute flex py-1 justify-center items-center gap-2 px-5 top-[80%] right-0 text-sm rounded-xl bg-[#282725] text-white font-["Para"]'>Add To Cart
+      <button onClick={() => ADDTOCART_FUCN(dish)} className='absolute flex py-1 justify-center items-center gap-2 px-5 top-[80%] right-0 text-sm rounded-xl bg-[#282725] text-white font-["Para"]'>Add To Cart
         <span><MdOutlineShoppingCartCheckout /></span>
       </button>
     </div>
@@ -41,6 +46,7 @@ function Menu() {
   const changeCategory = (Category) => {
     setCategory(Category);
   }
+  const cartdata = useSelector(state => state.Cart.Cart)
 
   return (
     <div className=' w-full  relative  '>
@@ -50,6 +56,11 @@ function Menu() {
           <p className='font-bold uppercase text-[#D51F0F] text-center'>- Choose delicious -</p>
           <h1 className='font-["Bebas"] text-[#383632] text-[5vw] leading-none '>Popular menu</h1>
         </div>
+        <Link to={'/cart'} className='flex justify-center px-5  bg-[#383632] my-3 hover:text-[#E49E27] cursor-pointer border-white border   rounded-xl items-center gap-1 relative'>
+          <TbShoppingBag size={25} className={`text-white`} />
+          <h2 className={`flex justify-center items-center text-lg font-bold text-white`} >{cartdata.length}</h2>
+        </Link>
+        
         <div className='Menu w-full mb-5 '>
           <div className='Headings flex justify-between items-center mt-5 px-20'>
             {["Starters", "Nonveg", "Vegeterian", "Dessert", "Drinks"].map((item, index) => {
@@ -62,7 +73,12 @@ function Menu() {
         </div>
         <div className='w-full h-full   grid grid-cols-2 gap-x-16 '>
           {/* map through the dish data */
-            Menudata[Category].map((item) => <DishesCard key={item.id} Name={item.name} ingredients={item.ingredients} price={item.price} img={item.img} />)
+            Menudata[Category].map((dish) => {
+              return (
+                // console.log(dish),
+                <DishesCard dish={dish} />
+              )
+            })
           }
         </div>
       </div>

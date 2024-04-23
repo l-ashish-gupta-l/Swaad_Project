@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import MenuPAGEBg from '../assets/MenuPAGEBg.jpg'
 import { useSelector } from 'react-redux'
-import { MdOutlineLocalShipping } from "react-icons/md";
-
+import { MdDeleteOutline } from "react-icons/md";
+import { useDispatch } from 'react-redux'
+import { removeFromCart } from '../REDUX/CartSlice'
 function CartDATA({ item }) {
-    console.log(item)
+    const Dispatch = useDispatch();
+    const remove_cart_prd = (id) => {
+        Dispatch(removeFromCart(id))
+    }
     return (
         <tr>
             <td className="px-5 py-5 bg-white text-sm">
@@ -16,7 +20,7 @@ function CartDATA({ item }) {
                     </div>
                     <div className="ml-5">
                         <p className="text-gray-900 font-semibold uppercase whitespace-no-wrap">
-                            {item.Name}
+                            {item.name}
                         </p>
                         <p className="text-gray-600 whitespace-no-wrap">{item.ingredients.join(", ")}</p>
                     </div>
@@ -44,16 +48,10 @@ function CartDATA({ item }) {
             <td className="px-5 py-5 bg-white text-sm text-right">
                 <button
                     type="button"
-                    className="inline-block text-gray-500 hover:text-gray-700"
+                    onClick={() => remove_cart_prd(item.id)}
+                    className="flex justify-center items-center w-8 h-8 rounded-full  bg-red-300 text-gray-500 hover:text-gray-700"
                 >
-                    <svg
-                        className="inline-block h-6 w-6 fill-current"
-                        viewBox="0 0 24 24"
-                    >
-                        <path
-                            d="M12 6a2 2 0 110-4 2 2 0 010 4zm0 8a2 2 0 110-4 2 2 0 010 4zm-2 6a2 2 0 104 0 2 2 0 00-4 0z"
-                        />
-                    </svg>
+                    <MdDeleteOutline size={20} className='text-red-700' />
                 </button>
             </td>
         </tr>
@@ -63,7 +61,12 @@ function CartDATA({ item }) {
 
 function CartPage() {
     const Cart_data = useSelector(state => state.Cart.Cart)
-    console.log(Cart_data);
+
+
+    useEffect(() => {
+        localStorage.setItem("Cart_data", JSON.stringify(Cart_data))
+    }, [Cart_data])
+
     return (
         <>
             <Navbar color={'text-[#383632]'} />
@@ -153,7 +156,7 @@ function CartPage() {
                         <div className='p-5'>
                             <button className='w-full py-2 px-5 bg-[#383632] rounded-full  font-["para"] text-white text-xl tracking-wider font-semibold flex gap-5 justify-center items-center'>
                                 <h1>Proceed to Pay</h1>
-                        </button>
+                            </button>
                         </div>
                     </div>
 
