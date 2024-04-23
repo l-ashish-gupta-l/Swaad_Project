@@ -53,12 +53,12 @@ function Navbar(props) {
             <div className='Bookbtn flex justify-center gap-5 items-center ' >
                 {User_data.Username ? (
                     <>
-                        < Link className={`text-xl ${props.color}`}>Hello, <span className='text-[#E49E27]'>{User_data.Username}</span> </Link>
-                        <div className='flex justify-center bg-transparent hover:text-[#E49E27] cursor-pointer border-white border px-3   rounded-xl items-center gap-1 relative'>
-                            <TbShoppingBag size={20} className=' ' />
-                            <h2 className='flex justify-center items-center text-md mt-1 '>{cartdata.length}</h2>
-                        </div>
-                        <button onClick={Logout}><TbLogout size={20} className='hover:text-[#E49E27] cursor-pointer' /></button>
+                        <h1 className={`text-xl ${props.color}`}>Hello, <span className='text-[#E49E27]'>{User_data.Username}</span> </h1>
+                        <Link to={'/cart'} className='flex justify-center bg-transparent hover:text-[#E49E27] cursor-pointer border-white border px-3   rounded-xl items-center gap-1 relative'>
+                            <TbShoppingBag size={20} className={`${props.color}`} />
+                            <h2 className={`flex justify-center items-center text-md mt-1 ${props.color}`} >{cartdata.length}</h2>
+                        </Link>
+                        <button onClick={Logout}><TbLogout size={20} className={`over:text-[#E49E27] cursor-pointer ${props.color}`} /></button>
                     </>
 
                 ) : (

@@ -9,6 +9,7 @@ const Booking = lazy(() => import('./Pages/Booking'));
 const AdminPanel = lazy(() => import('./Pages/AdminPanel'));
 const Signin = lazy(() => import('./Pages/Signin.jsx'));
 const Signup = lazy(() => import('./Pages/Signup'));
+const CartPage = lazy(() => import('./Pages/CartPage.jsx'));
 import Loading from './Components/Loading.jsx';
 import { Provider } from 'react-redux';
 import { store } from './REDUX/Store.js'
@@ -28,6 +29,7 @@ function App() {
             <Route path='/adminpanel' Component={AdminPanel} />
             <Route path='/signin' Component={Signin} />
             <Route path='/signup' Component={Signup} />
+            <Route path='/cart' Component={CartPage} />
           </Routes>
         </Suspense>
       </Router>
