@@ -10,6 +10,7 @@ const {
   UserLogin,
   isAuthenticated,
   getuserdata,
+  LogoutUser,
 } = require("./Controller/Controller");
 const cors = require("cors");
 const Usermodel = require("./Model/UserModel");
@@ -35,6 +36,7 @@ app.post("/createUser", UserCreate);
 app.post("/loginUser", UserLogin);
 app.post("/create", isAuthenticated, BookingController);
 app.get("/Userdata", isAuthenticated, getuserdata);
+app.get("/logout", isAuthenticated, LogoutUser);
 
 //Port Listening
 app.listen(process.env.PORT, () => {

@@ -86,10 +86,20 @@ const UserLogin = async (req, res) => {
   }
 };
 
+const LogoutUser = async (req, res) => {
+  try {
+    //delete the cookie from client side
+    res.clearCookie("User").send("cookie dlted");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   BookingController,
   UserCreate,
   UserLogin,
   isAuthenticated,
   getuserdata,
+  LogoutUser,
 };

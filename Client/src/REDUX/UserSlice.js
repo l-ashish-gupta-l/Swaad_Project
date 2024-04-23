@@ -15,4 +15,4 @@ export const Userinfoslice = createSlice({
 });
 
 export const { setuserInfo } = Userinfoslice.actions;
-export default Userinfoslice;
+export default Userinfoslice.reducer;

@@ -1,21 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import Menubg from '../assets/MenuBg.jpg';
 import Menudata from '../Menu/MenuData';
-const DishesCard = ({ Name, ingredients, price, img }) => {
-  return (
-    <div className='w-full h-[25vh] pl-2 flex items-center'>
-      <div className='img w-20 h-20 rounded-full border-black overflow-hidden'>
-        <img src={img} alt={Name} className='w-full h-full object-cover' />
-      </div>
-      <div className='ml-5   w-1/2 flex justify-center flex-col'>
-        <h1 className='font-["para"] font-bold text-md text-[#383632]'>{Name}</h1>
+import { MdOutlineShoppingCartCheckout } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import { addToCart } from '../REDUX/CartSlice';
 
-        <p className='font-["para"] font-normal text-sm text-zinc-600 w-3/4'>{ingredients.join(', ')}</p>
+const DishesCard = (item) => {
+  const dispatch = useDispatch();
+  const ADDTOCART_FUCN = (item) => {
+    dispatch(addToCart(item))
+  }
+
+  const data = useSelector(state => state.Cart);
+
+
+  return (
+    <div className='w-full h-[25vh] pl-2 flex items-center relative'>
+      <div className='img w-20 h-20 rounded-full border-black overflow-hidden'>
+        <img src={item.img} alt={item.Name} className='w-full h-full object-cover' />
       </div>
-      <div className='ml-14 flex justify-center flex-col'>
-        <h1 className='font-["para"] font-bold text-lg text-[#383632]'>${price.toFixed(2)}</h1>
+      <div className='ml-5   w-1/2 flex justify-center flex-col '>
+        <h1 className='font-["para"] font-bold text-md text-[#383632]'>{item.Name}</h1>
+
+        <p className='font-["para"] font-normal text-sm text-zinc-600 w-3/4'>{item.ingredients.join(', ')}</p>
+      </div>
+      <div className='ml-14 flex justify-center flex-col '>
+        <h1 className='font-["para"] font-bold text-lg text-[#383632]'>${item.price.toFixed(2)}</h1>
         <p className='font-["para] font-normal text-zinc-600'>Price</p>
       </div>
+      <button onClick={() => ADDTOCART_FUCN(item)} className='absolute flex py-1 justify-center items-center gap-2 px-5 top-[80%] right-0 text-sm rounded-xl bg-[#282725] text-white font-["Para"]'>Add To Cart
+        <span><MdOutlineShoppingCartCheckout /></span>
+      </button>
     </div>
   );
 };
