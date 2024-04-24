@@ -10,13 +10,26 @@ import { TbShoppingBag } from "react-icons/tb";
 // console.log(Menudata.Drinks[1])
 
 const DishesCard = ({ dish }) => {
+
   const dispatch = useDispatch();
-  const ADDTOCART_FUCN = (dish) => {
-    console,log(dish)
-    dispatch(addToCart(dish))
-  }
 
   const data = useSelector(state => state.Cart);
+  // console.log(data.Cart)
+
+
+  const ADDTOCART_FUCN = (dish) => {
+    console.log(dish.id)
+    const dishesid = data.Cart.find((el) => el.id === dish.id)
+    if (!dishesid) {
+      dispatch(addToCart(dish))
+    } else {
+      console.log('Dish is already in the cart')
+    }
+  }
+  const Cart_data = useSelector(state => state.Cart.Cart)
+  useEffect(() => {
+    localStorage.setItem("Cart_data", JSON.stringify(Cart_data))
+  }, [Cart_data])
 
 
   return (
@@ -49,8 +62,8 @@ function Menu() {
   const cartdata = useSelector(state => state.Cart.Cart)
 
   return (
-    <div className=' w-full  relative  '>
-      <img src={Menubg} alt="bg" className='w-full h-[110vh]  ' />
+    <div className=' w-full h-fit relative  '>
+      <img src={Menubg} alt="bg" className='w-full h-[120vh] ' />
       <div className='absolute top-0 left-1/2 -translate-x-1/2 py-10  w-[70vw] h-screen flex  flex-col items-center'>
         <div>
           <p className='font-bold uppercase text-[#D51F0F] text-center'>- Choose delicious -</p>
@@ -60,7 +73,7 @@ function Menu() {
           <TbShoppingBag size={25} className={`text-white`} />
           <h2 className={`flex justify-center items-center text-lg font-bold text-white`} >{cartdata.length}</h2>
         </Link>
-        
+
         <div className='Menu w-full mb-5 '>
           <div className='Headings flex justify-between items-center mt-5 px-20'>
             {["Starters", "Nonveg", "Vegeterian", "Dessert", "Drinks"].map((item, index) => {
@@ -73,10 +86,10 @@ function Menu() {
         </div>
         <div className='w-full h-full   grid grid-cols-2 gap-x-16 '>
           {/* map through the dish data */
-            Menudata[Category].map((dish) => {
+            Menudata[Category].map((dish, index) => {
               return (
                 // console.log(dish),
-                <DishesCard dish={dish} />
+                <DishesCard dish={dish} key={index} />
               )
             })
           }
