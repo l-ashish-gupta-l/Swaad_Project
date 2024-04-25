@@ -12,6 +12,8 @@ const {
   getuserdata,
   LogoutUser,
 } = require("./Controller/Controller");
+
+const { Checkout, Payment } = require("./Controller/PaymentController");
 const cors = require("cors");
 const Usermodel = require("./Model/UserModel");
 const cookieparser = require("cookie-parser");
@@ -24,6 +26,7 @@ app.use(
   })
 );
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieparser());
 
@@ -37,6 +40,10 @@ app.post("/loginUser", UserLogin);
 app.post("/create", isAuthenticated, BookingController);
 app.get("/Userdata", isAuthenticated, getuserdata);
 app.get("/logout", isAuthenticated, LogoutUser);
+
+//PAYMENT ROUTE
+app.post("/Checkout", Checkout);
+app.post("/Payment", Payment);
 
 //Port Listening
 app.listen(process.env.PORT, () => {
