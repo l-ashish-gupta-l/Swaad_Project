@@ -17,10 +17,13 @@ const DishesCard = ({ dish }) => {
   // console.log(data.Cart)
 
 
+  const [Quantity, setQuantity] = useState(1)
   const ADDTOCART_FUCN = (dish) => {
-    console.log(dish.id)
+    // console.log(dish.id)
     const dishesid = data.Cart.find((el) => el.id === dish.id)
+    dish.Quantity = Quantity;
     if (!dishesid) {
+      console.log(dish)
       dispatch(addToCart(dish))
     } else {
       console.log('Dish is already in the cart')

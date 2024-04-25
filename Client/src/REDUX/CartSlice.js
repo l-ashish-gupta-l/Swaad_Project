@@ -20,8 +20,21 @@ const CartSlice = createSlice({
     removeFromCart: (state, action) => {
       state.Cart = state.Cart.filter((i) => i.id !== action.payload);
     },
+    addQTYtoItemInCart: (state, action) => {
+      const dish = state.Cart.find((d) => d.id === action.payload.id);
+      dish.Quantity = dish.Quantity + 1;
+    },
+    RemovetoItemInCart: (state, action) => {
+      let dish = state.Cart.find((d) => d.id === action.payload.id);
+      dish.Quantity = dish.Quantity - 1;
+    },
   },
 });
 
-export const { addToCart, removeFromCart } = CartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  addQTYtoItemInCart,
+  RemovetoItemInCart,
+} = CartSlice.actions;
 export default CartSlice.reducer;
