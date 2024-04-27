@@ -12,14 +12,9 @@ import { TbShoppingBag } from "react-icons/tb";
 const DishesCard = ({ dish }) => {
 
   const dispatch = useDispatch();
-
   const data = useSelector(state => state.Cart);
-  // console.log(data.Cart)
-
-
   const [Quantity, setQuantity] = useState(1)
   const ADDTOCART_FUCN = (dish) => {
-    // console.log(dish.id)
     const dishesid = data.Cart.find((el) => el.id === dish.id)
     dish.Quantity = Quantity;
     if (!dishesid) {
@@ -63,7 +58,7 @@ function Menu() {
     setCategory(Category);
   }
   const cartdata = useSelector(state => state.Cart.Cart)
-
+  
   return (
     <div className=' w-full h-fit relative  '>
       <img src={Menubg} alt="bg" className='w-full h-[120vh] ' />
@@ -72,10 +67,10 @@ function Menu() {
           <p className='font-bold uppercase text-[#D51F0F] text-center'>- Choose delicious -</p>
           <h1 className='font-["Bebas"] text-[#383632] text-[5vw] leading-none '>Popular menu</h1>
         </div>
-        <Link to={'/cart'} className='flex justify-center px-5  bg-[#383632] my-3 hover:text-[#E49E27] cursor-pointer border-white border   rounded-xl items-center gap-1 relative'>
-          <TbShoppingBag size={25} className={`text-white`} />
-          <h2 className={`flex justify-center items-center text-lg font-bold text-white`} >{cartdata.length}</h2>
-        </Link>
+          <Link to={'/cart'} className='flex justify-center px-5  bg-[#383632] my-3 hover:text-[#E49E27] cursor-pointer border-white border   rounded-xl items-center gap-1 relative'>
+            <TbShoppingBag size={25} className={`text-white`} />
+            <h2 className={`flex justify-center items-center text-lg font-bold text-white`} >{cartdata.length}</h2>
+          </Link>
 
         <div className='Menu w-full mb-5 '>
           <div className='Headings flex justify-between items-center mt-5 px-20'>
@@ -85,7 +80,6 @@ function Menu() {
               )
             })}
           </div>
-
         </div>
         <div className='w-full h-full   grid grid-cols-2 gap-x-16 '>
           {/* map through the dish data */
