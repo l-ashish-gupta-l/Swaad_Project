@@ -7,7 +7,7 @@ import { MdDeleteOutline } from "react-icons/md";
 import { useDispatch } from 'react-redux'
 import { RemovetoItemInCart, removeFromCart, addQTYtoItemInCart } from '../REDUX/CartSlice'
 import axios from 'axios'
-// import Razorpay from 'razorpay'
+import logo from "../assets/L.webp"
 
 function CartDATA({ item }) {
     const Dispatch = useDispatch();
@@ -126,27 +126,35 @@ function CartPage() {
 
     //CHECKOUT HANDLER
     const Checkout = async (Amount) => {
+        // console.log(Amount)
+        const { data: key } = await axios.post("http://localhost:3000/getKey", {}, {
+            withCredentials: true,
+        })
 
-        const { data } = await axios.post("http://localhost:3000/Checkout", Amount)
+        const { data } = await axios.post("http://localhost:3000/Checkout", { Amount }, {
+            withCredentials: true,
+        })
+
+        
         const options = {
-            key: "rzp_test_9jvNo92PXoDuF6", // Enter the Key ID generated from the Dashboard
-            amount: data.Amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-            currency: "INR",
-            name: "Acme Corp",
-            description: "Test Transaction",
-            image: "https://example.com/your_logo",
+            key,
+            amount: data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            currency: "USD",
+            name: "RESTAURANT",
+            description: "YOUR FOOD IS READY TO GO!",
+            image: logo,
             order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
             callback_url: "http://localhost:3000/Payment",
             prefill: {
-                name: "Gaurav Kumar",
-                email: "gaurav.kumar@example.com",
+                name: "to be add",
+                email: "example@example.com",
                 contact: "9000090000"
             },
             notes: {
                 address: "Razorpay Corporate Office"
             },
             theme: {
-                "color": "#3399cc"
+                color: "#383632"
             }
         };
         const razorpay = new window.Razorpay(options);

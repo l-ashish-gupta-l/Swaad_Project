@@ -13,6 +13,7 @@ const CartPage = lazy(() => import('./Pages/CartPage.jsx'));
 import Loading from './Components/Loading.jsx';
 import { Provider } from 'react-redux';
 import { store } from './REDUX/Store.js'
+import Paymentsuccess from './Pages/Paymentsuccess.jsx';
 function App() {
   return (
     <Provider store={store}>
@@ -30,6 +31,7 @@ function App() {
             <Route path='/signin' Component={Signin} />
             <Route path='/signup' Component={Signup} />
             <Route path='/cart' Component={CartPage} />
+            <Route path='/Paymentsucess' Component={Paymentsuccess} />
           </Routes>
         </Suspense>
       </Router>
