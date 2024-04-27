@@ -28,6 +28,9 @@ const CartSlice = createSlice({
       let dish = state.Cart.find((d) => d.id === action.payload.id);
       dish.Quantity = dish.Quantity - 1;
     },
+    emptyCart: (state) => {
+      state.Cart = [];
+    },
   },
 });
 
@@ -36,5 +39,6 @@ export const {
   removeFromCart,
   addQTYtoItemInCart,
   RemovetoItemInCart,
+  emptyCart,
 } = CartSlice.actions;
 export default CartSlice.reducer;

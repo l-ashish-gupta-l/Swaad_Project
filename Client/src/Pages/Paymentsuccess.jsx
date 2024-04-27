@@ -1,10 +1,18 @@
-import { useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { emptyCart } from '../REDUX/CartSlice'
 
 function Paymentsuccess() {
+    let navigate = useNavigate();
+    const Dispatch = useDispatch()
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const reference = queryParams.get('reference');
 
+    const PaymentCompeleted = () => {
+        Dispatch(emptyCart())
+        navigate("/home");
+    }
 
     return (
         <div className="bg-gray-100 h-screen justify-center items-center flex ">
@@ -20,9 +28,9 @@ function Paymentsuccess() {
                     <p className="text-black my-2 font-bold"><span>ORDER ID : </span>{reference}</p>
                     <p> Have a great day!  </p>
                     <div className="py-10 text-center">
-                        <a href="/home" className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
+                        <button onClick={PaymentCompeleted} className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
                             GO BACK
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>

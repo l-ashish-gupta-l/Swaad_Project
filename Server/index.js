@@ -43,7 +43,7 @@ app.get("/logout", isAuthenticated, LogoutUser);
 
 //PAYMENT ROUTE
 app.post("/Checkout", isAuthenticated, Checkout);
-app.post("/Payment", Payment);
+app.post("/Payment", isAuthenticated, Payment);
 app.post("/getKey", isAuthenticated, async (req, res) => {
   res.json({ key: process.env.RAZORPAY_API_KEY });
 });

@@ -68,8 +68,8 @@ function CartDATA({ item }) {
 
 
             </td>
-            <td className="px-5 py-5 bg-white text-sm">
-                <div className="flex items-center justify-center bg-green-300 text-white  rounded-md ">
+            <td className="px-8 py-5 bg-white text-sm">
+                <div className="flex items-center justify-center w-10 bg-green-300 text-white  rounded-md ">
                     <button onClick={() => rmvqty(item)} className="px-2 py-1 rounded-md bg-green-500 hover:bg-green-600">-</button>
                     <span className="mx-2 font-bold text-white ">{item.Quantity}</span>
                     <button onClick={() => addqty(item)} className="px-2 py-1 rounded-md bg-green-500 hover:bg-green-600">+</button>
@@ -125,33 +125,34 @@ function CartPage() {
 
 
     //CHECKOUT HANDLER
+    const User_data = useSelector(state => state.userinfo.User)
     const Checkout = async (Amount) => {
         // console.log(Amount)
         const { data: key } = await axios.post("http://localhost:3000/getKey", {}, {
             withCredentials: true,
         })
 
-        const { data } = await axios.post("http://localhost:3000/Checkout", { Amount }, {
+        const { data } = await axios.post("http://localhost:3000/Checkout", { Amount, Cart_data }, {
             withCredentials: true,
         })
 
-        
+
         const options = {
             key,
-            amount: data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            amount: data.amount, // Amount is in currency subunits. 
             currency: "USD",
             name: "RESTAURANT",
             description: "YOUR FOOD IS READY TO GO!",
             image: logo,
-            order_id: data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            order_id: data.id,
             callback_url: "http://localhost:3000/Payment",
             prefill: {
-                name: "to be add",
-                email: "example@example.com",
-                contact: "9000090000"
+                name: User_data.Username,
+                email: User_data.email,
+                contact: User_data.phone
             },
             notes: {
-                address: "Razorpay Corporate Office"
+                address: "To be added"
             },
             theme: {
                 color: "#383632"
