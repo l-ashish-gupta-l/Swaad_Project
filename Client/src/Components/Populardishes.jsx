@@ -5,6 +5,7 @@ import 'swiper/css/pagination';
 import { FreeMode, Pagination } from 'swiper/modules';
 import swiperimg from "../assets/swiper.png"
 import { GoDotFill } from "react-icons/go";
+import GalleryDATA from '../assets/GalleryPhotos'
 
 function Populardishes() {
   return (
@@ -25,71 +26,15 @@ function Populardishes() {
           modules={[FreeMode, Pagination]}
           className="mySwiper cursor-grab"
         >
-          <SwiperSlide className='mb-14 '>
-            <img src={swiperimg} />
-            <div className='mt-3 text-center'>
-              <h1 className=' text-[#383632] font-["para"]' >Appeteaser blatter</h1>
-              <p className=' text-[#8D8987] mt-3 font-["para"] font-light flex justify-center items-center gap-3' ><span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber </p>
-
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='mb-14'>
-            <img src={swiperimg} />
-            <div className='mt-3 text-center'>
-              <h1 className=' text-[#383632] font-["para"]' >Appeteaser blatter</h1>
-              <p className=' text-[#8D8987] mt-3 font-["para"] font-light flex justify-center items-center gap-3' ><span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber </p>
-
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='mb-14'>
-            <img src={swiperimg} />
-            <div className='mt-3 text-center'>
-              <h1 className=' text-[#383632] font-["para"]' >Appeteaser blatter</h1>
-              <p className=' text-[#8D8987] mt-3 font-["para"] font-light flex justify-center items-center gap-3' ><span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber </p>
-
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='mb-14'>
-            <img src={swiperimg} />
-            <div className='mt-3 text-center'>
-              <h1 className=' text-[#383632] font-["para"]' >Appeteaser blatter</h1>
-              <p className=' text-[#8D8987] mt-3 font-["para"] font-light flex justify-center items-center gap-3' ><span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber </p>
-
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='mb-14'>
-            <img src={swiperimg} />
-            <div className='mt-3 text-center'>
-              <h1 className=' text-[#383632] font-["para"]' >Appeteaser blatter</h1>
-              <p className=' text-[#8D8987] mt-3 font-["para"] font-light flex justify-center items-center gap-3' ><span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber </p>
-
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='mb-14'>
-            <img src={swiperimg} />
-            <div className='mt-3 text-center'>
-              <h1 className=' text-[#383632] font-["para"]' >Appeteaser blatter</h1>
-              <p className=' text-[#8D8987] mt-3 font-["para"] font-light flex justify-center items-center gap-3' ><span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber </p>
-
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='mb-14'>
-            <img src={swiperimg} />
-            <div className='mt-3 text-center'>
-              <h1 className=' text-[#383632] font-["para"]' >Appeteaser blatter</h1>
-              <p className=' text-[#8D8987] mt-3 font-["para"] font-light flex justify-center items-center gap-3' ><span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber </p>
-
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='mb-14'>
-            <img src={swiperimg} />
-            <div className='mt-3 text-center'>
-              <h1 className=' text-[#383632] font-["para"]' >Appeteaser blatter</h1>
-              <p className=' text-[#8D8987] mt-3 font-["para"] font-light flex justify-center items-center gap-3' ><span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber </p>
-
-            </div>
-          </SwiperSlide>
-
+          {GalleryDATA.map((item, index) => (
+            <SwiperSlide className='mb-14 ' key={index}>
+              <img src={item} />
+              <div className='mt-3 text-center'>
+                <h1 className=' text-[#383632] font-["para"]' >Appeteaser blatter</h1>
+                <p className=' text-[#8D8987] mt-3 font-["para"] font-light flex justify-center items-center gap-3' ><span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber <span><GoDotFill /></span>Cucumber </p>
+              </div>
+            </SwiperSlide>
+          ))}
 
         </Swiper>
       </div>

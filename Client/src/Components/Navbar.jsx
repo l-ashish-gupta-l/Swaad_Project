@@ -40,15 +40,18 @@ function Navbar(props) {
                 </Link>
             </div>
             <div className='links  flex justify-center items-center gap-16 ml-10 h-full  '>
-                {["Home", "Menu", "Gallery", "Blog", "Contact"].map((item, index) => {
-                    return (
-                        <Link className={`text-xl hover:text-zinc-400 tracking-wider  ${props.color}`} key={index}
-                            to={{ pathname: `/${item.toLowerCase()}` }}>
-                            {item}
-                        </Link>
-
-                    )
-                })}
+                {["Home", "Menu", "Gallery", "Blog", "Contact"].map((item, index) => (
+                    <Link className={`text-xl hover:text-zinc-400 tracking-wider  ${props.color}`} key={index}
+                        to={{ pathname: `/${item.toLowerCase()}` }}>
+                        {item}
+                    </Link>
+                ))}
+                {User_data.isAdmin &&
+                    <Link className={`text-xl hover:text-zinc-400 tracking-wider  ${props.color}`} key="admin"
+                        to={{ pathname: `/Adminpanel` }}>
+                        Dashboard
+                    </Link>
+                }
             </div>
             <div className='Bookbtn flex justify-center gap-5 items-center ' >
                 {User_data.Username ? (

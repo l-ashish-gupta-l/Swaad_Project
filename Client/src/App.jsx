@@ -14,6 +14,7 @@ import Loading from './Components/Loading.jsx';
 import { Provider } from 'react-redux';
 import { store } from './REDUX/Store.js'
 import Paymentsuccess from './Pages/Paymentsuccess.jsx';
+import ProtectedRoute from './Pages/ProtectedRoute.jsx';
 function App() {
   return (
     <Provider store={store}>
@@ -27,7 +28,11 @@ function App() {
             <Route path='/gallery' Component={Gallery} />
             <Route path='/contact' Component={Contact} />
             <Route path='/booking' Component={Booking} />
-            <Route path='/adminpanel' Component={AdminPanel} />
+            <Route path='/adminpanel' element={
+              <ProtectedRoute >
+                <AdminPanel />
+              </ProtectedRoute>}>
+            </Route>
             <Route path='/signin' Component={Signin} />
             <Route path='/signup' Component={Signup} />
             <Route path='/cart' Component={CartPage} />
