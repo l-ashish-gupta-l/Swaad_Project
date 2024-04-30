@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import MenuPAGEBg from '../assets/MenuPAGEBg.jpg'
-
+import { Link } from 'react-router-dom'
 function UserINFO() {
     
     const [Details, setDetails] = useState({
@@ -75,8 +75,16 @@ function AdminPanel() {
               <h1 className='font-["Bebas"] text-[#383632] text-[5vw] leading-none '>DASHBOARD</h1>
               <img src={MenuPAGEBg} alt="bg" className='absolute -z-10  object-cover top-0 left-0' />
           </div>
-            <div class="container mx-auto px-4 sm:px-8">
-                <div class="py-8">
+          
+
+          <div class="container mx-auto px-4 sm:px-8">
+              <div className='bg-black w-3/5 mx-auto h-10 px-10 py-2 rounded-full '>
+                  <Link>All User</Link>
+                  <Link>All Payments</Link>
+                  <Link>All Booked</Link>
+
+              </div>
+                <div class="pb-8">
                     <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
                         <div
                             class="inline-block min-w-full shadow-md rounded-lg overflow-hidden"
