@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 
 function UserINFO({ Details }) {
-
     return (
         <tr>
             <td className="px-5 py-5 bg-white text-sm">
@@ -78,7 +77,10 @@ const Table_head = ({ Headings }) => {
                     {Headings.Heading_4}
                 </th>
                 <th
-                    className="px-5 py-3 border-b-2 border-gray-200 bg-[#383632]"
+                    className="px-5 py-3 border-b-2 border-gray-200 bg-[#383632] text-left text-xs font-semibold text-white uppercase tracking-wider"
+                >{Headings.Heading_5}</th>
+                <th
+                    className="px-5 py-3 border-b-2 border-gray-200 bg-[#383632] text-left text-xs font-semibold text-white uppercase tracking-wider"
                 ></th>
             </tr>
         </thead>

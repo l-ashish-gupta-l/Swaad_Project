@@ -22,6 +22,18 @@ const CartDATAschema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  Username: {
+    type: String,
+    required: true,
+  },
+  Email: {
+    type: String,
+    required: true,
+  },
+  phone: {
+    type: Number,
+    required: true,
+  },
 });
 
 // Create a model using the schema

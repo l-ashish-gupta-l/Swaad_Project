@@ -12,6 +12,7 @@ const {
   getuserdata,
   LogoutUser,
   AllUser,
+  Allorders,
 } = require("./Controller/Controller");
 
 const { Checkout, Payment } = require("./Controller/PaymentController");
@@ -50,7 +51,8 @@ app.post("/getKey", isAuthenticated, async (req, res) => {
 });
 
 //Admin Routes
-app.get("/AllUser" ,isAuthenticated , AllUser );
+app.get("/AllUser", isAuthenticated, AllUser);
+app.get("/Allorders", isAuthenticated, Allorders);
 
 //Port Listening
 app.listen(process.env.PORT, () => {

@@ -20,12 +20,15 @@ const Checkout = async (req, res) => {
     const order_Detail = await instance.orders.create(options);
     // console.log(req.body.Cart_data);
     // console.log(order_Detail.id);
-    // console.log(req.user_detail.id);
+    // console.log(req.user_detail);
 
     const order_Detail_saved = await CartDATA.create({
       CartItem: req.body.Cart_data,
       OrderId: order_Detail.id,
       UserID: req.user_detail.id,
+      Username: req.user_detail.Username,
+      Email: req.user_detail.email,
+      phone: req.user_detail.phone,
       status: "Pending",
       Total_bill_to_pay: order_Detail.amount / 100,
     });

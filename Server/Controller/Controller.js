@@ -1,3 +1,4 @@
+const CartDATA = require("../Model/CartDATA.js");
 const Booking = require("../Model/TableModel");
 const Usermodel = require("../Model/UserModel.js");
 const bcrypt = require("bcryptjs");
@@ -104,6 +105,14 @@ const AllUser = async (req, res) => {
     console.log(err);
   }
 };
+const Allorders = async (req, res) => {
+  try {
+    const All_CART_DATA = await CartDATA.find();
+    res.send(All_CART_DATA);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 module.exports = {
   BookingController,
@@ -113,4 +122,5 @@ module.exports = {
   getuserdata,
   LogoutUser,
   AllUser,
+  Allorders,
 };

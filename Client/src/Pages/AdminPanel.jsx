@@ -3,7 +3,7 @@ import Navbar from '../Components/Navbar'
 import Footer from '../Components/Footer'
 import MenuPAGEBg from '../assets/MenuPAGEBg.jpg'
 import AllUser from '../Components/AllUser'
-import AllPayments from '../Components/AllPayments'
+import AllOrders from '../Components/AllOrders'
 import AllBookings from '../Components/AllBookings'
 
 function AdminPanel() {
@@ -19,7 +19,7 @@ function AdminPanel() {
 
             <div class="container mx-auto px-4 sm:px-8">
                 <div className='shadow-md border-2 bg-transparent  w-3/5 mx-auto h-10 px-10 py-2 rounded-full flex justify-between items-center '>
-                    {["All User", "All Payments", "All Bookings"].map((item, index) => {
+                    {["All User", "All Orders", "All Bookings"].map((item, index) => {
                         return (
                             <button key={index} onClick={() => setContent_to_show(item)} className='text-black font-["bebas"] text-xl ' >
                                 {item}
@@ -28,7 +28,7 @@ function AdminPanel() {
                     })}
                 </div>
                 {Content_to_show === "All User" && <AllUser />}
-                {Content_to_show === "All Payments" && <AllPayments />}
+                {Content_to_show === "All Orders" && <AllOrders />}
                 {Content_to_show === "All Bookings" && <AllBookings />}
             </div>
             <Footer />
