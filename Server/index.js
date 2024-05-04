@@ -11,6 +11,7 @@ const {
   isAuthenticated,
   getuserdata,
   LogoutUser,
+  AllUser,
 } = require("./Controller/Controller");
 
 const { Checkout, Payment } = require("./Controller/PaymentController");
@@ -47,6 +48,9 @@ app.post("/Payment", isAuthenticated, Payment);
 app.post("/getKey", isAuthenticated, async (req, res) => {
   res.json({ key: process.env.RAZORPAY_API_KEY });
 });
+
+//Admin Routes
+app.get("/AllUser" ,isAuthenticated , AllUser );
 
 //Port Listening
 app.listen(process.env.PORT, () => {

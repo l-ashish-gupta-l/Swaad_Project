@@ -95,6 +95,16 @@ const LogoutUser = async (req, res) => {
   }
 };
 
+//admin controller
+const AllUser = async (req, res) => {
+  try {
+    const All_USER_DATA = await Usermodel.find();
+    res.send(All_USER_DATA);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 module.exports = {
   BookingController,
   UserCreate,
@@ -102,4 +112,5 @@ module.exports = {
   isAuthenticated,
   getuserdata,
   LogoutUser,
+  AllUser,
 };
