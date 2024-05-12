@@ -26,7 +26,7 @@ const BookingController = async (req, res) => {
   try {
     // console.log(req.body);
     const booking = await Booking.create(req.body);
-    console.log(req.user_detail);
+    // console.log(req.user_detail);
     res.status(200).send("Data created successfully!");
   } catch (error) {
     console.error(error);
@@ -113,6 +113,14 @@ const Allorders = async (req, res) => {
     console.log(err);
   }
 };
+const AllBookings = async (req, res) => {
+  try {
+    const All_Booking_DATA = await Booking.find();
+    res.send(All_Booking_DATA);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 module.exports = {
   BookingController,
@@ -123,4 +131,5 @@ module.exports = {
   LogoutUser,
   AllUser,
   Allorders,
+  AllBookings,
 };

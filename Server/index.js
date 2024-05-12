@@ -13,6 +13,7 @@ const {
   LogoutUser,
   AllUser,
   Allorders,
+  AllBookings,
 } = require("./Controller/Controller");
 
 const { Checkout, Payment } = require("./Controller/PaymentController");
@@ -53,6 +54,7 @@ app.post("/getKey", isAuthenticated, async (req, res) => {
 //Admin Routes
 app.get("/AllUser", isAuthenticated, AllUser);
 app.get("/Allorders", isAuthenticated, Allorders);
+app.get("/Allbookings", isAuthenticated, AllBookings);
 
 //Port Listening
 app.listen(process.env.PORT, () => {

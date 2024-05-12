@@ -58,19 +58,19 @@ function Menu() {
     setCategory(Category);
   }
   const cartdata = useSelector(state => state.Cart.Cart)
-  
+
   return (
     <div className=' w-full h-fit relative  '>
-      <img src={Menubg} alt="bg" className='w-full h-[120vh] ' />
-      <div className='absolute top-0 left-1/2 -translate-x-1/2 py-10  w-[70vw] h-screen flex  flex-col items-center'>
+      <img src={Menubg} alt="bg" className='w-full h-[120vh]  ' />
+      <div className='absolute  top-0 left-1/2 -translate-x-1/2 py-10  w-[70vw] h-screen flex  flex-col items-center'>
         <div>
           <p className='font-bold uppercase text-[#D51F0F] text-center'>- Choose delicious -</p>
           <h1 className='font-["Bebas"] text-[#383632] text-[5vw] leading-none '>Popular menu</h1>
         </div>
-          <Link to={'/cart'} className='flex justify-center px-5  bg-[#383632] my-3 hover:text-[#E49E27] cursor-pointer border-white border   rounded-xl items-center gap-1 relative'>
-            <TbShoppingBag size={25} className={`text-white`} />
-            <h2 className={`flex justify-center items-center text-lg font-bold text-white`} >{cartdata.length}</h2>
-          </Link>
+        <Link to={'/cart'} className='flex justify-center px-5  bg-[#383632] my-3 hover:text-[#E49E27] cursor-pointer border-white border   rounded-xl items-center gap-1 relative'>
+          <TbShoppingBag size={25} className={`text-white`} />
+          <h2 className={`flex justify-center items-center text-lg font-bold text-white`} >{cartdata.length}</h2>
+        </Link>
 
         <div className='Menu w-full mb-5 '>
           <div className='Headings flex justify-between items-center mt-5 px-20'>
@@ -92,6 +92,12 @@ function Menu() {
           }
         </div>
       </div>
+      {/* <marquee  className="">
+        <span className='text-[12vw] font-["bebas"] leading-[12vw]'>Cuisine</span>
+        <span className='text-stroke border-width text-[12vw] stroke-black text-transparent '>Awesome</span>
+        <span>Experience</span>
+        <span>Delicious</span>
+      </marquee> */}
     </div>
   )
 }
