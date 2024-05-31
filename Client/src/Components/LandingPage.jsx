@@ -26,7 +26,7 @@ function LandingPage() {
             <div className='absolute z-20 w-full h-full top-0 left-0  '>
                 <Navbar mode={"light"} />
                 <div className='w-fit mt-10  m-auto flex justify-center items-center relative'>
-                    <img src={Mainherobg} alt='Mainherobg' className='object-cover w-[38vw]' />
+                    <img src={Mainherobg} alt='Mainherobg' className='object-cover md:w-[38vw]' />
                     <div className='content    absolute font-["Bebas"] flex justify-center items-center flex-col'>
                         <h2 className='uppercase text-2xl'>Experience the taste of INDIA</h2>
                         <h1 className='text-stroke stroke-white mt-3 text-[7vw] whitespace-nowrap leading-none'>GREAT DINING</h1>
